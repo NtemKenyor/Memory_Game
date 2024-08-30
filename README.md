@@ -1,6 +1,6 @@
 ### Project Description:
 
-**Memory Game with Solana Airdrop Incentive** is a browser-based interactive game designed to test and enhance the user's memory skills. The game presents players with a sequence of words, which they must recall and input correctly to advance through increasingly challenging levels. The game includes a scoring system that rewards players for each correct answer, with higher levels providing greater challenges. Additionally, the game offers a unique twist: when players fail, they are given the opportunity to receive a Solana token airdrop as a consolation and incentive to continue playing. This feature not only adds a rewarding element to the game but also introduces players to cryptocurrency in a fun and engaging way.
+**Memory Game with Solana Airdrop Incentive** is a browser-based interactive game designed to test and enhance the user's memory skills. The game presents players with a sequence of words, which they must recall and input correctly to advance through increasingly challenging levels. The game includes a scoring system that rewards players for each correct answer, with higher levels providing greater challenges. Additionally, the game offers a unique twist: when players fail, they are given the opportunity to receive a Solana token airdrop in their current score as a consolation and incentive to continue playing. This feature not only adds a rewarding element to the game but also introduces players to cryptocurrency in a fun and engaging way.
 
 ---
 
@@ -14,7 +14,7 @@
 
 ## Overview
 
-The **Memory Game with Solana Airdrop Incentive** is a web-based game that challenges players to remember and recall a sequence of words. The game becomes progressively more difficult with each level, and players are rewarded with points for each correct answer. In addition, if a player fails, they are offered a Solana token airdrop as a form of encouragement to continue playing.
+The **Memory Game with Solana Airdrop Incentive** is a web-based game that challenges players to remember and recall a sequence of words. The game becomes progressively more difficult with each level, and players are rewarded with points for each correct answer. In addition, if a player fails, they are offered a Solana token airdrop in their current score as a form of encouragement to continue playing.
 
 ## Features
 
