@@ -4,6 +4,10 @@
 
 ---
 
+<image src="memory_game.png" alt="Display of the game 🎮 view/photo">
+</image>
+
+
 ### README
 
 # Memory Game with Solana Airdrop Incentive
