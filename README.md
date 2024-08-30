@@ -32,7 +32,7 @@ The **Memory Game with Solana Airdrop Incentive** is a web-based game that chall
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/yourusername/memory-game-spl-airdrop.git
+   git clone https://github.com/NtemKenyor/Memory_Game.git
    cd memory-game-spl-airdrop
    ```
 
