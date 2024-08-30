@@ -4,7 +4,7 @@
 
 ---
 
-<image src="memory_game.png" alt="Display of the game 🎮 view/photo">
+<image style="width: 100%; height:100%;" src="memory_game.png" alt="Display of the game 🎮 view/photo">
 </image>
 
 
