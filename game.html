@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Game</title>
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+
+    <!-- DSCVR Canvas Meta Tags -->
+    <meta name="dscvr:canvas:version" content="vNext">
+    <meta name="og:image" content="https://roynek.com/Memory_Game/memory_game.png">
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #282c34;
+            color: white;
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+        }
+
+        canvas {
+            background-color: #ffffff;
+            margin-bottom: 20px;
+            border: 2px solid #ccc;
+        }
+
+        #inputArea,
+        #messageArea {
+            margin-top: 20px;
+        }
+
+        #userInput {
+            padding: 10px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #61dafb;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #21a1f1;
+        }
+
+        #timer, #score {
+            position: absolute;
+            top: 10px;
+            font-size: 18px;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        #timer {
+            right: 20px;
+        }
+
+        #score {
+            right: 140px;
+        }
+
+        #solanaPopup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            z-index: 1000;
+        }
+
+        #solanaPopup input {
+            padding: 10px;
+            width: 80%;
+            margin: 10px 0;
+        }
+
+        #solanaPopup button {
+            padding: 10px 20px;
+            background-color: #61dafb;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #solanaPopup button:hover {
+            background-color: #21a1f1;
+        }
+    </style>
+<script>
+    
+    document.addEventListener('DOMContentLoaded', () => {
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = 500;
+    canvas.height = 150;
+
+    const words = [
+        "apple", "banana", "cherry", "date", "elderberry",
+        "fig", "grape", "honeydew", "kiwi", "lemon",
+        "mango", "nectarine", "orange", "papaya", "quince"
+    ];
+    let level = 1;
+    let score = 0;
+    let currentWords = [];
+    let timer;
+    let countdown;
+
+    const timerDisplay = document.getElementById('timer');
+    const scoreDisplay = document.getElementById('score');
+    const solanaPopup = document.getElementById('solanaPopup');
+
+    window.startGame = function() {
+        level = 1;
+        score = 0;
+        updateScore();
+        removeMessage();
+        showWords();
+    }
+
+    function showWords() {
+        clearCanvas();
+        currentWords = generateWords(level);
+        ctx.font = '30px Arial';
+        ctx.fillStyle = 'black';
+        ctx.textAlign = 'center';
+        ctx.fillText(currentWords.join(' '), canvas.width / 2, canvas.height / 2);
+        startTimer(7, clearWords);
+    }
+
+    function generateWords(count) {
+        let selectedWords = [];
+        for (let i = 0; i < count; i++) {
+            const randomWord = words[Math.floor(Math.random() * words.length)];
+            selectedWords.push(randomWord);
+        }
+        return selectedWords;
+    }
+
+    function clearWords() {
+        clearCanvas();
+        document.getElementById('inputArea').classList.remove('hidden');
+    }
+
+    function clearCanvas() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+
+    window.checkAnswer = function() {
+        const userInput = document.getElementById('userInput').value.trim().split(' ');
+        document.getElementById('inputArea').classList.add('hidden');
+        if (arraysEqual(userInput, currentWords)) {
+            level++;
+            score += 10;
+            updateScore();
+            if (level <= 30) {
+                showWords();
+            } else {
+                showMessage("🎉 Congratulations! You won the game!", true);
+            }
+        } else {
+            showSolanaPopup();
+        }
+    }
+
+    function arraysEqual(arr1, arr2) {
+        if (arr1.length !== arr2.length) return false;
+        for (let i = 0; i < arr1.length; i++) {
+            if (arr1[i] !== arr2[i]) return false;
+        }
+        return true;
+    }
+
+    function showMessage(msg, isWin) {
+        const messageArea = document.getElementById('messageArea');
+        const message = document.getElementById('message');
+        message.innerHTML = msg;
+        messageArea.classList.remove('hidden');
+    }
+
+    function removeMessage(){
+        const messageArea = document.getElementById('messageArea');
+        messageArea.classList.add('hidden');
+    }
+
+    function startTimer(seconds, callback) {
+        clearInterval(countdown);
+        let timeLeft = seconds;
+        timerDisplay.textContent = `Time: ${timeLeft}s`;
+
+        countdown = setInterval(() => {
+            timeLeft--;
+            timerDisplay.textContent = `Time: ${timeLeft}s`;
+
+            if (timeLeft <= 0) {
+                clearInterval(countdown);
+                callback();
+            }
+        }, 1000);
+    }
+
+    function updateScore() {
+        scoreDisplay.textContent = `Score: ${score}`;
+    }
+
+    function showSolanaPopup() {
+        solanaPopup.style.display = 'block';
+    }
+
+    window.submitSolanaAddress = function() {
+        const solanaAddress = document.getElementById('solanaAddress').value.trim();
+        if (solanaAddress) {
+            alert(`Thank you! Your Solana address: ${solanaAddress} has been recorded. Keep playing to win more tokens!`);
+            solanaPopup.style.display = 'none';
+            startGame();
+        }
+    }
+
+    startGame();
+});
+
+</script>
+</head>
+<body>
+    <div class="container">
+        <div id="timer">Time: 7s</div>
+        <div id="score">Score: 0</div>
+        <canvas id="gameCanvas"></canvas>
+        <div id="inputArea" class="hidden">
+            <input type="text" id="userInput" placeholder="Enter the words you have just seen...">
+            <button onclick="checkAnswer()">Submit</button>
+        </div>
+        <div id="messageArea" class="hidden">
+            <p id="message"></p>
+            <button onclick="startGame()">Try Again</button>
+        </div>
+        <div id="solanaPopup">
+            <p>❌ You have failed, but don't worry!</p>
+            <p>Enter your Solana address to receive some tokens as encouragement to keep playing.</p>
+            <input type="text" id="solanaAddress" placeholder="Enter your Solana address...">
+            <button onclick="submitSolanaAddress()">Submit</button>
+        </div>
+    </div>
+</body>
+</html>
