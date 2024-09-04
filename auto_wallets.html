@@ -380,23 +380,49 @@
     }
 
     // function connectWallet() {
-    //     const wallet = new SolflareWalletAdapter();
-    //     wallet.connect()
-    //         .then(() => {
-    //             if (wallet.connected && wallet.publicKey) {
-    //                 const publicKey = wallet.publicKey.toString();
-    //                 showSolanaPopup(publicKey);
-    //             } else {
-    //                 alert("Failed to retrieve the public key. Please enter your wallet address manually.");
-    //                 requestManualWalletInput();
-    //             }
-    //         })
-    //         .catch(err => {
-    //             alert("Failed to connect wallet. Please try again.");
-    //             console.error(err);
-    //             requestManualWalletInput(); // Fallback to manual input
-    //         });
+    //     wallet = new PhantomWalletAdapter();
+    //     wallet.connect().then(() => {
+    //         publicKey = wallet.publicKey.toString();
+    //         showSolanaPopup(publicKey);
+    //     }).catch(err => {
+    //         alert("Failed to connect wallet. Please try again.");
+    //         console.error(err);
+    //     });
     // }
+
+    // function showSolanaPopup(publicKey) {
+    //     solanaPopup.style.display = 'block';
+    //     const solanaAddressInput = document.getElementById('solanaAddress');
+    //     solanaAddressInput.value = publicKey;
+    // }
+
+    // window.submitSolanaAddress = function() {
+    //     const solanaAddress = document.getElementById('solanaAddress').value.trim();
+    //     if (solanaAddress) {
+    //         alert(`Thank you! Your Solana address: ${solanaAddress} has been recorded. We will send your airdrop soon!`);
+    //         solanaPopup.style.display = 'none';
+    //         startGame();
+    //     }
+    // }
+
+    function connectWallet() {
+        const wallet = new SolflareWalletAdapter();
+        wallet.connect()
+            .then(() => {
+                if (wallet.connected && wallet.publicKey) {
+                    const publicKey = wallet.publicKey.toString();
+                    showSolanaPopup(publicKey);
+                } else {
+                    alert("Failed to retrieve the public key. Please enter your wallet address manually.");
+                    requestManualWalletInput();
+                }
+            })
+            .catch(err => {
+                alert("Failed to connect wallet. Please try again.");
+                console.error(err);
+                requestManualWalletInput(); // Fallback to manual input
+            });
+    }
 
     function showSolanaPopup(publicKey) {
         solanaPopup.style.display = 'block';
