@@ -157,7 +157,7 @@ header("Content-Security-Policy:
                 this.publicKey = window.solana.publicKey;
                 this.connected = true;
             } else {
-                alert("Phantom wallet is not installed.");
+                await alert_("Phantom wallet is not installed.");
             }
         }
 
@@ -192,7 +192,7 @@ header("Content-Security-Policy:
                     this.publicKey = provider.publicKey.toString();
                     this.connected = true;
                 } else {
-                    alert("Solflare wallet is not installed.");
+                    await alert_("Solflare wallet is not installed.");
                 }
             } catch (err) {
                 console.error(err);
@@ -233,12 +233,12 @@ header("Content-Security-Policy:
 //             const publicKey = wallet.publicKey.toString();
 //             showSolanaPopup(publicKey);
 //         } else {
-//             alert("Failed to retrieve the public key. Please enter your wallet address manually.");
+//             await alert_("Failed to retrieve the public key. Please enter your wallet address manually.");
 //             requestManualWalletInput();
 //         }
 //     })
 //     .catch(err => {
-//         alert("Failed to connect wallet. Please try again.");
+//         await alert_("Failed to connect wallet. Please try again.");
 //         console.error(err);
 //         requestManualWalletInput(); // Fallback to manual input
 //     });
@@ -399,12 +399,12 @@ header("Content-Security-Policy:
     //                 const publicKey = wallet.publicKey.toString();
     //                 showSolanaPopup(publicKey);
     //             } else {
-    //                 alert("Failed to retrieve the public key. Please enter your wallet address manually.");
+    //                 await alert_("Failed to retrieve the public key. Please enter your wallet address manually.");
     //                 requestManualWalletInput();
     //             }
     //         })
     //         .catch(err => {
-    //             alert("Failed to connect wallet. Please try again.");
+    //             await alert_("Failed to connect wallet. Please try again.");
     //             console.error(err);
     //             requestManualWalletInput(); // Fallback to manual input
     //         });
@@ -416,24 +416,24 @@ header("Content-Security-Policy:
         solanaAddressInput.value = publicKey;
     }
 
-    function requestManualWalletInput() {
+    async function requestManualWalletInput() {
         const manualInputPrompt = "We couldn't connect to your wallet. Please enter your Solana wallet address manually:";
-        const manualAddress = prompt(manualInputPrompt);
+        const manualAddress = await prompt(manualInputPrompt);
 
         if (manualAddress) {
-            alert(`Thank you! Your Solana address: ${manualAddress} has been recorded. We will send your airdrop soon!`);
+            await alert_(`Thank you! Your Solana address: ${manualAddress} has been recorded. We will send your airdrop soon!`);
             solanaPopup.style.display = 'none';
             startGame();
         } else {
-            alert("No wallet address entered. Please try again.");
+            await alert_("No wallet address entered. Please try again.");
             document.getElementById('inputArea').classList.remove('hidden');
         }
     }
 
-    window.submitSolanaAddress = function() {
+    window.submitSolanaAddress = async function() {
         const solanaAddress = document.getElementById('solanaAddress').value.trim();
         if (solanaAddress) {
-            alert(`Thank you! Your Solana address: ${solanaAddress} has been recorded. We will send your airdrop soon!`);
+            await alert_(`Thank you! Your Solana address: ${solanaAddress} has been recorded. We will send your airdrop soon!`);
             solanaPopup.style.display = 'none';
             startGame();
         }
