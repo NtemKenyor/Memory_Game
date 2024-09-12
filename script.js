@@ -273,7 +273,7 @@
 
     function requestManualWalletInput() {
         const manualInputPrompt = "We couldn't connect to your wallet. Please enter your Solana wallet address manually:";
-        const manualAddress = prompt(manualInputPrompt);
+        const manualAddress = prompt_(manualInputPrompt);
 
         if (manualAddress) {
             alert_(`Thank you! Your Solana address: ${manualAddress} has been recorded. We will send your airdrop soon!`);
