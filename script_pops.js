@@ -82,12 +82,8 @@ function alert_(message) {
     return new Promise(function(resolve) {
       // Create modal HTML structure
       const modal = document.createElement('div');
-    //   modal.style.cssText = `
-    //     position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%;
-    //     background-color: rgba(0, 0, 0, 0.5); display: flex; align-items: center; justify-content: center;
-    //   `;
       modal.style.cssText = `
-        left: 0; top: 0; width: 100%; height: 100%;
+        position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%;
         background-color: rgba(0, 0, 0, 0.5); display: flex; align-items: center; justify-content: center;
       `;
   
@@ -118,20 +114,16 @@ function alert_(message) {
       modalContent.appendChild(okButton);
       modalContent.appendChild(cancelButton);
       modal.appendChild(modalContent);
-
-    //   var pElem = document.body;
-      var pElem = document.getElementById('popsThem');
-
-      pElem.appendChild(modal);
+      document.body.appendChild(modal);
   
       // Handle OK/Cancel button clicks
       okButton.onclick = function() {
-        pElem.removeChild(modal); // Remove modal from DOM
+        document.body.removeChild(modal); // Remove modal from DOM
         resolve(inputElem.value);
       };
   
       cancelButton.onclick = function() {
-        pElem.removeChild(modal); // Remove modal from DOM
+        document.body.removeChild(modal); // Remove modal from DOM
         resolve(null);
       };
     });
