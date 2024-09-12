@@ -41,7 +41,7 @@ The **Memory Game with Solana Airdrop Incentive** is a web-based game that chall
    ```
 
 2. **Open the Game**:
-   - Open `index.html` in your favorite web browser.
+   - Open `index.html` in your favorite web browser. If you have a local server, you can use index.php too
 
 3. **Play the Game**:
    - The game should start automatically. Enjoy!

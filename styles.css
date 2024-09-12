@@ -1,0 +1,113 @@
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(-45deg, #ff6f61, #d83c7d, #ffb100, #61dafb);
+            background-size: 400% 400%;
+            animation: gradientAnimation 10s ease infinite;
+            color: white;
+        }
+
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+        }
+
+        canvas {
+            background-color: #ffffff;
+            margin-bottom: 20px;
+            border: 2px solid #ccc;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        #inputArea,
+        #messageArea {
+            margin-top: 20px;
+        }
+
+        #userInput {
+            padding: 10px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #61dafb;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #21a1f1;
+        }
+
+        #timer, #score {
+            position: absolute;
+            top: 10px;
+            font-size: 18px;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        #timer {
+            right: 20px;
+        }
+
+        #score {
+            right: 140px;
+        }
+
+        #solanaPopup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            z-index: 1000;
+            box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.7);
+        }
+
+        #solanaPopup input {
+            padding: 10px;
+            width: 80%;
+            margin: 10px 0;
+        }
+
+        #solanaPopup button {
+            padding: 10px 20px;
+            background-color: #61dafb;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #solanaPopup button:hover {
+            background-color: #21a1f1;
+        }
