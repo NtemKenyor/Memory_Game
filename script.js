@@ -13,7 +13,9 @@
                 this.publicKey = window.solana.publicKey;
                 this.connected = true;
             } else {
-                alert("Phantom wallet is not installed.");
+                try { alert("Phantom wallet is not installed."); } catch(e) { alert_("Phantom wallet is not installed."); }
+                // alert("Phantom wallet is not installed.");
+                // alert_("Phantom wallet is not installed.");
             }
         }
 
@@ -46,7 +48,8 @@
                     this.publicKey = provider.publicKey.toString();
                     this.connected = true;
                 } else {
-                    alert("Solflare wallet is not installed.");
+                    // alert_("Solflare wallet is not installed.");
+                    try { alert("Solflare wallet is not installed."); } catch(e) { alert_("Solflare wallet is not installed."); }
                 }
             } catch (err) {
                 console.error(err);
@@ -273,11 +276,11 @@
         const manualAddress = prompt(manualInputPrompt);
 
         if (manualAddress) {
-            alert(`Thank you! Your Solana address: ${manualAddress} has been recorded. We will send your airdrop soon!`);
+            alert_(`Thank you! Your Solana address: ${manualAddress} has been recorded. We will send your airdrop soon!`);
             solanaPopup.style.display = 'none';
             startGame();
         } else {
-            alert("No wallet address entered. Please try again.");
+            alert_("No wallet address entered. Please try again.");
             document.getElementById('inputArea').classList.remove('hidden');
         }
     }
@@ -285,7 +288,7 @@
     window.submitSolanaAddress = function() {
         const solanaAddress = document.getElementById('solanaAddress').value.trim();
         if (solanaAddress) {
-            alert(`Thank you! Your Solana address: ${solanaAddress} has been recorded. We will send your airdrop soon!`);
+            alert_(`Thank you! Your Solana address: ${solanaAddress} has been recorded. We will send your airdrop soon!`);
             solanaPopup.style.display = 'none';
             startGame();
         }
