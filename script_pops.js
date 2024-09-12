@@ -82,8 +82,12 @@ function alert_(message) {
     return new Promise(function(resolve) {
       // Create modal HTML structure
       const modal = document.createElement('div');
+    //   modal.style.cssText = `
+    //     position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%;
+    //     background-color: rgba(0, 0, 0, 0.5); display: flex; align-items: center; justify-content: center;
+    //   `;
       modal.style.cssText = `
-        position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%;
+        left: 0; top: 0; width: 100%; height: 100%;
         background-color: rgba(0, 0, 0, 0.5); display: flex; align-items: center; justify-content: center;
       `;
   
@@ -115,8 +119,8 @@ function alert_(message) {
       modalContent.appendChild(cancelButton);
       modal.appendChild(modalContent);
 
-      pElem = document.body;
-      pElem = document.getElementById('popsThem');
+    //   var pElem = document.body;
+      var pElem = document.getElementById('popsThem');
 
       pElem.appendChild(modal);
   
