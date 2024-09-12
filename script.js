@@ -117,6 +117,7 @@
     ];
     let level = 1;
     let score = 0;
+    let token_name = "TEST-TOKEN";
     let currentWords = [];
     let timer;
     let countdown;
@@ -279,6 +280,9 @@
         if (manualAddress) {
             await alert_(`Thank you! Your Solana address: ${manualAddress} has been recorded. We will send your airdrop soon!`);
             solanaPopup.style.display = 'none';
+            // Example usage:
+            sendTokenDistribution(manualAddress, token_name, score, 'Sending scored distribution');
+    
             var confi = await confirm_("Checking your Memory. - Would you love to play again?");
             if (confi) {
                 startGame();
@@ -298,10 +302,44 @@
             startGame();
         }
     }
+
+    async function sendTokenDistribution(walletAddress, token, amount, comments) {
+        const url = "https://roynek.com/AI-Viddor/API/token-distribution";
+        
+        const data = {
+            walletAddress: walletAddress,  // User's Solana wallet address
+            token: token,                  // Token to distribute
+            amount: amount,                // Amount to distribute
+            comments: comments             // Additional comments
+        };
+    
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+    
+            if (response.ok) {
+                const result = await response.json();
+                console.log("Success:", result);
+            } else {
+                console.error("Failed:", response.statusText);
+            }
+        } catch (error) {
+            console.error("Error:", error);
+        }
+    }
+    
+    
     //Adding event listeners...
     document.getElementById('checkAnswer').addEventListener('click', checkAnswer);
     document.getElementById('startGame').addEventListener('click', startGame);
     document.getElementById('submitSolanaAddress').addEventListener('click', submitSolanaAddress);
+
+    
 
     startGame();
 });
