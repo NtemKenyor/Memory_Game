@@ -9,7 +9,7 @@ function alert_(message) {
   
       const modalContent = document.createElement('div');
       modalContent.style.cssText = `
-        background-color: white; padding: 20px; text-align: center; border-radius: 8px;
+        background-color: white; color: black; padding: 20px; text-align: center; border-radius: 8px;
       `;
   
       const messageElem = document.createElement('p');
@@ -44,7 +44,7 @@ function alert_(message) {
   
       const modalContent = document.createElement('div');
       modalContent.style.cssText = `
-        background-color: white; padding: 20px; text-align: center; border-radius: 8px;
+        background-color: white; color: black; padding: 20px; text-align: center; border-radius: 8px;
       `;
   
       const messageElem = document.createElement('p');
@@ -89,7 +89,7 @@ function alert_(message) {
   
       const modalContent = document.createElement('div');
       modalContent.style.cssText = `
-        background-color: white; padding: 20px; text-align: center; border-radius: 8px;
+        background-color: white; color: black; padding: 20px; text-align: center; border-radius: 8px;
       `;
   
       const messageElem = document.createElement('p');

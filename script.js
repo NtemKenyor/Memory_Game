@@ -13,9 +13,9 @@
                 this.publicKey = window.solana.publicKey;
                 this.connected = true;
             } else {
-                try { alert("Phantom wallet is not installed."); } catch(e) { alert_("Phantom wallet is not installed."); }
+                // try { alert("Phantom wallet is not installed."); } catch(e) { alert_("Phantom wallet is not installed."); }
                 // alert("Phantom wallet is not installed.");
-                // alert_("Phantom wallet is not installed.");
+                await alert_("Phantom wallet is not installed.");
             }
         }
 
@@ -49,7 +49,8 @@
                     this.connected = true;
                 } else {
                     // alert_("Solflare wallet is not installed.");
-                    try { alert("Solflare wallet is not installed."); } catch(e) { alert_("Solflare wallet is not installed."); }
+                    // try { alert("Solflare wallet is not installed."); } catch(e) { alert_("Solflare wallet is not installed."); }
+                    await alert_("Solflare wallet is not installed.");
                 }
             } catch (err) {
                 console.error(err);
@@ -271,24 +272,28 @@
         solanaAddressInput.value = publicKey;
     }
 
-    function requestManualWalletInput() {
+    async function requestManualWalletInput() {
         const manualInputPrompt = "We couldn't connect to your wallet. Please enter your Solana wallet address manually:";
-        const manualAddress = prompt_(manualInputPrompt);
+        const manualAddress = await prompt_(manualInputPrompt);
 
         if (manualAddress) {
-            alert_(`Thank you! Your Solana address: ${manualAddress} has been recorded. We will send your airdrop soon!`);
+            await alert_(`Thank you! Your Solana address: ${manualAddress} has been recorded. We will send your airdrop soon!`);
             solanaPopup.style.display = 'none';
-            startGame();
+            var confi = await confirm_("Checking your Memory. - Would you love to play again?");
+            if (confi) {
+                startGame();
+            }
+            
         } else {
             alert_("No wallet address entered. Please try again.");
             document.getElementById('inputArea').classList.remove('hidden');
         }
     }
 
-    window.submitSolanaAddress = function() {
+    window.submitSolanaAddress = async function() {
         const solanaAddress = document.getElementById('solanaAddress').value.trim();
         if (solanaAddress) {
-            alert_(`Thank you! Your Solana address: ${solanaAddress} has been recorded. We will send your airdrop soon!`);
+            await alert_(`Thank you! Your Solana address: ${solanaAddress} has been recorded. We will send your airdrop soon!`);
             solanaPopup.style.display = 'none';
             startGame();
         }
