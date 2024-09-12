@@ -114,16 +114,20 @@ function alert_(message) {
       modalContent.appendChild(okButton);
       modalContent.appendChild(cancelButton);
       modal.appendChild(modalContent);
-      document.body.appendChild(modal);
+
+      pElem = document.body;
+      pElem = document.getElementById('popsThem');
+
+      pElem.appendChild(modal);
   
       // Handle OK/Cancel button clicks
       okButton.onclick = function() {
-        document.body.removeChild(modal); // Remove modal from DOM
+        pElem.removeChild(modal); // Remove modal from DOM
         resolve(inputElem.value);
       };
   
       cancelButton.onclick = function() {
-        document.body.removeChild(modal); // Remove modal from DOM
+        pElem.removeChild(modal); // Remove modal from DOM
         resolve(null);
       };
     });
