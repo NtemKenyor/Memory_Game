@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Memory Game</title>
-    <!-- <link rel="stylesheet" href="styles.css"> -->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Memory Airdrop Game</title>
+    <!-- Add this in the <head> section -->
+    <link rel="icon" href="https://roynek.com/Memory_Game/memory_game.png" type="image/x-icon">
 
     <!-- DSCVR Canvas Meta Tags -->
     <meta name="dscvr:canvas:version" content="vNext">
@@ -28,39 +30,150 @@
     connect-src 'self' https://api.solana.com https://roynek.com;">
 
 
-    <link rel="stylesheet" href="styles.css">
-    
-    
-<!-- Include Solana Wallet Adapter -->
-<script src="https://cdn.jsdelivr.net/npm/@solana/wallet-adapter@0.9.0/dist/index.umd.js"></script>
+    <style>
+        /* Basic reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<!-- Solana web3.js -->
-<script src="https://cdn.jsdelivr.net/npm/@solana/web3.js@latest/lib/index.iife.min.js"></script>
-<script src="script_pops.js" defer></script>
-<script src="script.js" defer></script>
+        body, html {
+            height: 100%;
+            font-family: 'Arial', sans-serif;
+            color: white;
+            background: #1d1e22;
+            overflow: hidden;
+        }
 
+        /* Container for centering content */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            position: relative;
+        }
 
+        /* Flying animation - circles */
+        .floating-circle {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 10s infinite ease-in-out;
+        }
+
+        /* Flying circles of different sizes */
+        .circle1 { width: 80px; height: 80px; top: 10%; left: 20%; animation-duration: 15s; }
+        .circle2 { width: 50px; height: 50px; top: 30%; left: 60%; animation-duration: 12s; }
+        .circle3 { width: 100px; height: 100px; top: 70%; left: 10%; animation-duration: 18s; }
+        .circle4 { width: 120px; height: 120px; top: 50%; left: 80%; animation-duration: 14s; }
+
+        @keyframes float {
+            0% {
+                transform: translate(0, 0);
+                opacity: 0.5;
+            }
+            50% {
+                transform: translate(50px, -100px);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50px, 100px);
+                opacity: 0.5;
+            }
+        }
+
+        /* Description text */
+        .content {
+            z-index: 2;
+        }
+
+        .content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            color: #ffd700;
+        }
+
+        .content p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            color: #b3b3b3;
+        }
+
+        /* Play button */
+        .play-btn {
+            background-color: #ff6f61;
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .play-btn:hover {
+            background-color: #ff3d2e;
+        }
+
+        /* Responsive for smaller screens */
+        @media (max-width: 768px) {
+            .content h1 {
+                font-size: 2rem;
+            }
+
+            .content p {
+                font-size: 1rem;
+            }
+
+            .play-btn {
+                font-size: 1.2rem;
+                padding: 10px 30px;
+            }
+        }
+
+        /* Responsive for very small screens */
+        @media (max-width: 480px) {
+            .content h1 {
+                font-size: 1.5rem;
+            }
+
+            .content p {
+                font-size: 0.9rem;
+            }
+
+            .play-btn {
+                font-size: 1rem;
+                padding: 8px 25px;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <div id="timer">Time: 7s</div>
-        <div id="score">Score: 0</div>
-        <canvas id="gameCanvas"></canvas>
-        <div id="inputArea" class="hidden">
-            <input type="text" id="userInput" placeholder="Enter the words you have just seen...">
-            <button id="checkAnswer">Submit</button>
+        <!-- Floating circles for animated background -->
+        <div class="floating-circle circle1"></div>
+        <div class="floating-circle circle2"></div>
+        <div class="floating-circle circle3"></div>
+        <div class="floating-circle circle4"></div>
+
+        <!-- Main content -->
+        <div class="content">
+            <h1>Welcome to the Memory Airdrop Game</h1>
+            <p>Get ready to test your memory and win amazing rewards through our fun and interactive airdrop game!</p>
+            <a href="play.html" style="text-decoration: none;"> <button class="play-btn">Play Now</button> </a>
         </div>
-        <div id="messageArea" class="hidden">
-            <p id="message"></p>
-            <button id="startGame">Try Again</button>
-        </div>
-        <div id="solanaPopup">
-            <p>❌ You have failed, but don't worry!</p>
-            <p>Enter your Solana address to receive some tokens as encouragement to keep playing.</p>
-            <input type="text" id="solanaAddress" placeholder="Enter your Solana address...">
-            <button id="submitSolanaAddress">Submit</button>
-        </div>
-        <!-- <div id="popsThem"></div> -->
     </div>
+
+    <!-- <script>
+        // Redirect to the game page on clicking 'Play Now'
+        function startGame() {
+            window.location.href = 'play.html';
+        }
+    </script> -->
 </body>
 </html>
+

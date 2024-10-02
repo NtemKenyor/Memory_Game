@@ -281,7 +281,7 @@
             await alert_(`Thank you! Your Solana address: ${manualAddress} has been recorded. We will send your airdrop soon!`);
             solanaPopup.style.display = 'none';
             // Example usage:
-            sendTokenDistribution(manualAddress, token_name, score, 'Sending scored distribution');
+            // sendTokenDistribution(manualAddress, token_name, score, 'Sending scored distribution');
     
             var confi = await confirm_("Checking your Memory. - Would you love to play again?");
             if (confi) {
@@ -299,6 +299,10 @@
         if (solanaAddress) {
             await alert_(`Thank you! Your Solana address: ${solanaAddress} has been recorded. We will send your airdrop soon!`);
             solanaPopup.style.display = 'none';
+
+            // Example usage:
+            sendTokenDistribution(solanaAddress, token_name, score, 'Sending scored distribution');
+    
             startGame();
         }
     }
